@@ -116,7 +116,7 @@ function my_prompt(){
 function click_reset(){
     function callback(){
         gameOver = false;
-        $.alert("YOOOOOO");
+        //$.alert("YOOOOOO");
         
         //level = 0;
         container.removeClass("help");
