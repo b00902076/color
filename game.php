@@ -108,7 +108,6 @@
         }
         $conn->close();
         echo "</table>";
-        echo "YAAAAAAAAAAAAAAAAAAASSSAAAAAA";
     ?>
     <?php 
         //echo "\$_SESSION[\"via_button\"]= ".$_SESSION["via_button"]."<br>";
