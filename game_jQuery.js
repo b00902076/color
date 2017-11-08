@@ -190,7 +190,7 @@ function click_reset(){
             if(n !== "" && n!==null){
                 document.myform.name.value = n;
                 document.myform.score.value = level;
-                document.myform.submit();
+                //document.myform.submit();
             }
         }
         level = 0;
