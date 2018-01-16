@@ -55,11 +55,12 @@
 
 
     <?php
+        //echo phpinfo();
         echo "<table class=\"board page\">";
         echo "<tr class=\"board_top\">"."<td colspan=2>ランキング</td>";
         echo "</tr>";
         echo "<tr class=\"board_ctop\">";
-        echo "<td>Name</td><td>Score</td>";
+        echo "<td>NNNName</td><td>Score</td>";
         echo "</tr>";
         $servername = "localhost";
         $username = "root";
@@ -71,6 +72,9 @@
         // Create connection
         $conn = new mysqli($servername, $username, $password, $dbname);
 
+        // Set charset, or data
+        $conn->set_charset("utf8");
+
         // Check connection
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
@@ -80,17 +84,25 @@
             //($_SESSION["via_button"] == $_POST["via_button"]) &&
             //($_SESSION["via_button"] == "unset")){
             ){
+            //die();
             $sql = "select max(uid) as maxuid from score_ranking";
             $result = $conn->query($sql)->fetch_assoc();
             //echo "maxuid= ".$result['maxuid']+1;
+            //die();
             if($name == "") $name = "NoName";
+            //die();
             $sql = "insert into score_ranking (uid, name, score) value ('".($result['maxuid']+1)."','".$_POST['name']."','".$_POST['score']."')";
-            $conn->query($sql);
+            $rtn =  $conn->query($sql);
+            //die(var_dump($rtn));
             $conn->close();
-            header('Location: http://127.0.0.1:8888/WebGame/game.php');
+            header($_SERVER['REQUEST_URI']);
             //$_POST = [];
             //$_SESSION["via_button"]="submitted";
         }
+        //else{
+            //echo "ssssssss";
+            //die();
+        //}
 
         $sql = "select * from score_ranking order by score desc, uid asc limit 20";
         //$result = $conn->query($sql);
