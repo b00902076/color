@@ -55,12 +55,11 @@
 
 
     <?php
-        //echo phpinfo();
         echo "<table class=\"board page\">";
         echo "<tr class=\"board_top\">"."<td colspan=2>ランキング</td>";
         echo "</tr>";
         echo "<tr class=\"board_ctop\">";
-        echo "<td>NNNName</td><td>Score</td>";
+        echo "<td>Name</td><td>Score</td>";
         echo "</tr>";
         $servername = "localhost";
         $username = "root";
@@ -84,25 +83,17 @@
             //($_SESSION["via_button"] == $_POST["via_button"]) &&
             //($_SESSION["via_button"] == "unset")){
             ){
-            //die();
             $sql = "select max(uid) as maxuid from score_ranking";
             $result = $conn->query($sql)->fetch_assoc();
             //echo "maxuid= ".$result['maxuid']+1;
-            //die();
             if($name == "") $name = "NoName";
-            //die();
             $sql = "insert into score_ranking (uid, name, score) value ('".($result['maxuid']+1)."','".$_POST['name']."','".$_POST['score']."')";
             $rtn =  $conn->query($sql);
-            //die(var_dump($rtn));
             $conn->close();
-            header($_SERVER['REQUEST_URI']);
+            header('Location: http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
             //$_POST = [];
             //$_SESSION["via_button"]="submitted";
         }
-        //else{
-            //echo "ssssssss";
-            //die();
-        //}
 
         $sql = "select * from score_ranking order by score desc, uid asc limit 20";
         //$result = $conn->query($sql);
