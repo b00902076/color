@@ -61,23 +61,8 @@
         echo "<tr class=\"board_ctop\">";
         echo "<td>Name</td><td>Score</td>";
         echo "</tr>";
-        $servername = "localhost";
-        $username = "root";
-        $password = "ppp";
-        $dbname = "huang";
-        //echo "Get name: ".$name."<br>Get score: ".$score."<br>";
 
-
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
-
-        // Set charset, or data
-        $conn->set_charset("utf8");
-
-        // Check connection
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }//echo "Connected successfully<br>";
+        include_once "config/db_connect.php";
 
         if( ($_POST["name"] != "" && $_POST["score"] != "") //&&
             //($_SESSION["via_button"] == $_POST["via_button"]) &&
