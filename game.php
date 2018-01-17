@@ -126,6 +126,6 @@
             //echo "\$_POST[\"via_button\"]= ".$_POST["via_button"]."<br><br><br>";
         ?>
     </form>
-    <script src="game_jQuery.js" type="text/javascript"></script>
+    <script src="game.js" type="text/javascript"></script>
 </body>
 </html>
