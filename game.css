@@ -39,6 +39,10 @@ p{
     float:left;
 }
 
+.grid_outer:first-child{
+    margin-left: 15px;
+}
+
 .grid_outer:last-child{
     margin-right:0;
 }
