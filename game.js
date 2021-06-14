@@ -39,7 +39,7 @@ function initial(){
             $(grid[i]).addClass("ans");
         }
         colorStr = "rgba("+print[0]+", "+print[1]+", "+print[2]+", "+print[3]+")";
-        if(i === (ans+1)%16)	{console.log(colorStr);console.log("v= "+v);}
+        // if(i === (ans+1)%16)	{console.log(colorStr);console.log("v= "+v);}
         $(grid[i]).css("background", colorStr);
     }
 }
