@@ -1,4 +1,3 @@
-<!-- <?//php session_start();$_SESSION["via_button"]="unset"?> -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,12 +46,6 @@
         </div>
 
     </div>
-    
-<!--     <div class="fixed"> -->
-<!--         <p class="highScore">High Score: </p> -->
-<!--     </div> -->
-    
-
 
     <?php
         echo "<table class=\"board page\">";
@@ -64,24 +57,17 @@
 
         include_once "config/db_connect.php";
 
-        if( ($_POST["name"] != "" && $_POST["score"] != "") //&&
-            //($_SESSION["via_button"] == $_POST["via_button"]) &&
-            //($_SESSION["via_button"] == "unset")){
-            ){
+        if($_POST["name"] != "" && $_POST["score"] != ""){
             $sql = "select max(uid) as maxuid from score_ranking";
             $result = $conn->query($sql)->fetch_assoc();
-            //echo "maxuid= ".$result['maxuid']+1;
             if($name == "") $name = "NoName";
             $sql = "insert into score_ranking (uid, name, score) value ('".($result['maxuid']+1)."','".$_POST['name']."','".$_POST['score']."')";
             $rtn =  $conn->query($sql);
             $conn->close();
             header('Location: http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
-            //$_POST = [];
-            //$_SESSION["via_button"]="submitted";
         }
 
         $sql = "select * from score_ranking order by score desc, uid asc limit 20";
-        //$result = $conn->query($sql);
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
@@ -97,19 +83,10 @@
         $conn->close();
         echo "</table>";
     ?>
-    <?php 
-        //echo "\$_SESSION[\"via_button\"]= ".$_SESSION["via_button"]."<br>";
-        //echo "\$_POST[\"via_button\"]= ".$_POST["via_button"]."<br>";
-    ?>
     <form name="myform" action="game.php" method="post">
         <input type="hidden" name="name">
         <input type="hidden" name="score">
         <input type="hidden" name="valid">
-        <!--  <input type="hidden" name="via_button" value="<?php //echo $_SESSION['via_button']; ?>"> -->
-        <?php 
-            //echo "\$_SESSION[\"via_button\"]= ".$_SESSION["via_button"]."<br>";
-            //echo "\$_POST[\"via_button\"]= ".$_POST["via_button"]."<br><br><br>";
-        ?>
     </form>
     <script src="game.js" type="text/javascript"></script>
 </body>
