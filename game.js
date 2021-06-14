@@ -19,7 +19,6 @@ function difficulty(level){
 }
 
 function transform(){
-	//console.log("Sort[0]= "+Sort[0]+" level= "+level+"\n"+"diff= "+difficulty(level));
     if(Sort[0] < 1.5*dist)  return opac+0.1+difficulty(level);
     if(Sort[0] < 1.8*dist)  return opac+0.05+difficulty(level);
     return opac+difficulty(level);
@@ -27,10 +26,7 @@ function transform(){
 
 function initial(){
     lv.text( tmp+level );
-    //while(1){
-        color = [randColor(dist), randColor(dist), randColor(dist)];
-        
-    //}
+    color = [randColor(dist), randColor(dist), randColor(dist)];
     var avg = (color[0]+color[1]+color[2])/3;
     var v = ((color[0]-avg)*(color[0]-avg)+(color[1]-avg)*(color[1]-avg)+(color[2]-avg)*(color[2]-avg))/3;
     Sort = color.sort(function (a,b){return (a>b)? -1:1;});
@@ -116,9 +112,6 @@ function my_prompt(){
 function click_reset(){
     function callback(){
         gameOver = false;
-        //$.alert("YOOOOOO");
-        
-        //level = 0;
         container.removeClass("help");
         
         for(var i=0; i<16; i++) $(grid[i]).removeClass("kichiku");
@@ -129,62 +122,10 @@ function click_reset(){
             n = "";
             while(n === "" || n === null){
                 n = prompt("名前を入力してください", "NoName");
-                //my_prompt();
                 
                 if(n === null){
                     var confirm_state;
-                    //console.log("YOOOOOOOOOOOOO");
-                    
-                    /*
-                    $.confirm({
-                                title: '警告',
-                                content: 'このウインドウを消しますと、スコア記録が破棄されます。\n本当に破棄しますか。',
-                                buttons: {
-                                    button1: {
-                                        text: 'はい',
-                                        //btnClass: 'btn-blue',
-                                        //keys: ['enter', 'shift'],
-                                        action: function(){
-                                            confirm_state = 'Yes';
-                                            $.alert('め！');
-                                        }
-                                    },
-                                    button2: {
-                                        text: 'いいえ',
-                                        //btnClass: 'btn-blue',
-                                        //keys: ['enter', 'shift'],
-                                        action: function(){
-                                            confirm_state = 'No';
-                                        }
-                                    }
-                                }
-                            });
-                            */
-                    /*
-                    $.confirm({
-                                title: 'Confirm!',
-                                content: 'Simple confirm!',
-                                buttons: {
-                                    confirm: function () {
-                                        $.alert('Confirmed!');
-                                    },
-                                    cancel: function () {
-                                        $.alert('Canceled!');
-                                    },
-                                    somethingElse: {
-                                        text: 'Something else',
-                                        btnClass: 'btn-blue',
-                                        keys: ['enter', 'shift'],
-                                        action: function(){
-                                            $.alert('Something else?');
-                                        }
-                                    }
-                                }
-                            });
-                     */
                     if(confirm("このウインドウを消しますと、スコア記録が破棄されます。\n本当に破棄しますか。")) break;
-                    //console.log("?????????????????????");
-                    
                 }
             }
             if(n !== "" && n!==null){
