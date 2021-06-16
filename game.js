@@ -5,7 +5,7 @@ var help_btn = $(".help_btn");
 var kichiku_btn = $(".kichiku_btn");
 var reset = $(".reset");
 var tmp = lv[0].textContent;
-var color = [], print = [], Sort = [];
+var color = [], print = [], sorted = [];
 var colorStr ="", mode="normal", pre_mode="normal";
 var level=0, ans, dificulty_rate = 0.95, dist = 50, opac=0.5, gameOver = false, highScore=0;
 var n;
@@ -19,8 +19,8 @@ function difficulty(level){
 }
 
 function transform(){
-    if(Sort[0] < 1.5*dist)  return opac+0.1+difficulty(level);
-    if(Sort[0] < 1.8*dist)  return opac+0.05+difficulty(level);
+    if(sorted[0] < 1.5*dist)  return opac+0.1+difficulty(level);
+    if(sorted[0] < 1.8*dist)  return opac+0.05+difficulty(level);
     return opac+difficulty(level);
 }
 
@@ -29,7 +29,7 @@ function initial(){
     color = [randColor(dist), randColor(dist), randColor(dist)];
     var avg = (color[0]+color[1]+color[2])/3;
     var v = ((color[0]-avg)*(color[0]-avg)+(color[1]-avg)*(color[1]-avg)+(color[2]-avg)*(color[2]-avg))/3;
-    Sort = color.sort(function (a,b){return (a>b)? -1:1;});
+    sorted = color.sort(function (a,b){return (a>b)? -1:1;});
     ans = Math.floor(Math.random()*16);
     for(var i=0; i<16; i++){
         print = color.slice();
